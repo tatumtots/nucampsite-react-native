@@ -1,8 +1,12 @@
 import React, { Component } from "react"
+import Home from "./Home"
 import Directory from "./Directory"
 import CampsiteInfo from "./CampsiteInfo"
-import { createStackNavigator } from "react-navigation-stack"
+import About from "./About"
+import Contact from "./Contact"
 import { View, Platform } from "react-native"
+import { createStackNavigator } from "react-navigation-stack"
+import { createDrawerNavigator } from "react-navigation-drawer"
 import { createAppContainer } from "react-navigation"
 
 const DirectoryNavigator = createStackNavigator(
@@ -11,7 +15,7 @@ const DirectoryNavigator = createStackNavigator(
     CampsiteInfo: { screen: CampsiteInfo },
   },
   {
-    initalRouteName: "Directory",
+    initialRouteName: "Directory",
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: "#5637DD",
@@ -24,7 +28,68 @@ const DirectoryNavigator = createStackNavigator(
   }
 )
 
-const AppNavigator = createAppContainer(DirectoryNavigator)
+const HomeNavigator = createStackNavigator(
+  {
+    Home: { screen: Home },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#5637DD",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
+    },
+  }
+)
+const AboutNavigator = createStackNavigator(
+  {
+    About: { screen: About },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#5637DD",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
+    },
+  }
+)
+const ContactNavigator = createStackNavigator(
+  {
+    Contact: { screen: Contact },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#5637DD",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
+    },
+  }
+)
+
+const MainNavigator = createDrawerNavigator(
+  {
+    Home: { screen: HomeNavigator },
+    Directory: { screen: DirectoryNavigator },
+    About: { screen: AboutNavigator },
+    Contact: { screen: ContactNavigator },
+  },
+  {
+    drawerBackgroundColor: "#CEC8FF",
+  }
+)
+
+const AppNavigator = createAppContainer(MainNavigator)
 
 class Main extends Component {
   render() {

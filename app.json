@@ -13,7 +13,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -22,10 +24,6 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
-    },
-    "packagerOpts": {
-      "sourceExts": ["js", "json", "ts", "tsx", "jsx"],
-      "config": "metro.config.js"
     },
     "web": {
       "favicon": "./assets/favicon.png"
