@@ -3,11 +3,6 @@ import { Card, Text } from "react-native-elements"
 import { ScrollView } from "react-native"
 
 class Contact extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {}
-  }
   static navigationOptions = {
     title: "Contact",
   }
