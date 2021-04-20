@@ -1,6 +1,7 @@
 import * as ActionTypes from "./ActionTypes"
 import { baseUrl } from "../shared/baseUrl"
 
+//COMMENTS////////////////////////////////////////////////////////////////////
 export const fetchComments = () => (dispatch) => {
   return fetch(baseUrl + "comments")
     .then(
@@ -35,6 +36,26 @@ export const addComments = (comments) => ({
   payload: comments,
 })
 
+export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
+  const newComment = {
+    campsiteId,
+    rating,
+    author,
+    text,
+  }
+  newComment.date = new Date().toISOString()
+
+  setTimeout(() => {
+    dispatch(addComment(newComment))
+  }, 2000)
+}
+
+export const addComment = (comment) => ({
+  type: ActionTypes.ADD_COMMENT,
+  payload: comment,
+})
+
+//CAMPSITES//////////////////////////////////////////////////////////////////////////////////
 export const fetchCampsites = () => (dispatch) => {
   dispatch(campsitesLoading())
 
@@ -75,6 +96,7 @@ export const addCampsites = (campsites) => ({
   payload: campsites,
 })
 
+//PROMOTIONS/////////////////////////////////////////////////////////////////////////////
 export const fetchPromotions = () => (dispatch) => {
   dispatch(promotionsLoading())
 
@@ -115,6 +137,7 @@ export const addPromotions = (promotions) => ({
   payload: promotions,
 })
 
+//PARTNERS////////////////////////////////////////////////////////////////////////////////
 export const fetchPartners = () => (dispatch) => {
   dispatch(partnersLoading())
 
@@ -155,6 +178,8 @@ export const addPartners = (partners) => ({
   payload: partners,
 })
 
+//FAVORITES/////////////////////////////////////////////////////////////////////
+
 export const postFavorite = (campsiteId) => (dispatch) => {
   setTimeout(() => {
     dispatch(addFavorite(campsiteId))
@@ -166,21 +191,7 @@ export const addFavorite = (campsiteId) => ({
   payload: campsiteId,
 })
 
-export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
-  const newComment = {
-    campsiteId,
-    rating,
-    author,
-    text,
-  }
-  newComment.date = new Date().toISOString()
-
-  setTimeout(() => {
-    dispatch(addComment(newComment))
-  }, 2000)
-}
-
-export const addComment = (comment) => ({
-  type: ActionTypes.ADD_COMMENT,
-  payload: comment,
+export const deleteFavorite = (campsiteId) => ({
+  type: ActionTypes.DELETE_FAVORITE,
+  payload: campsiteId,
 })
